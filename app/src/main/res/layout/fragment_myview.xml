@@ -4,7 +4,14 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="project1.nview.org.project1.You$PlaceholderFragment">
+    tools:context="project1.nview.org.project1.MyView$PlaceholderFragment">
+
+    <Button
+        android:id="@+id/show_news_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/show_news_button" />
 
     <TextView
         android:id="@+id/section_label"

@@ -16,9 +16,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.Button;
 import android.widget.TextView;
 
-public class You extends AppCompatActivity {
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
+
+public class MyView extends AppCompatActivity {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -30,6 +34,8 @@ public class You extends AppCompatActivity {
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
+    final TextView mTextView = (TextView) findViewById(R.id.text);
+
     /**
      * The {@link ViewPager} that will host the section contents.
      */
@@ -38,7 +44,7 @@ public class You extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_you);
+        setContentView(R.layout.activity_myview);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -58,14 +64,13 @@ public class You extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_you, menu);
+        getMenuInflater().inflate(R.menu.menu_myview, menu);
         return true;
     }
 
@@ -83,6 +88,7 @@ public class You extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 
     /**
      * A placeholder fragment containing a simple view.
@@ -112,12 +118,28 @@ public class You extends AppCompatActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_you, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+            View rootView = inflater.inflate(R.layout.fragment_myview, container, false);
+            final TextView textView = rootView.findViewById(R.id.section_label);
+//            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+
+
+            final Button button = rootView.findViewById(R.id.show_news_button);
+            button.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+
+
+                    // Instantiate the RequestQueue.
+                    RequestQueue queue = Volley.newRequestQueue(this);
+                    String url ="http://www.google.com";
+
+                    textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+                }
+            });
+
             return rootView;
         }
     }
+
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
